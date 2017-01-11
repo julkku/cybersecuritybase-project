@@ -1,0 +1,25 @@
+body {
+    padding-top: 70px;
+}
+
+.content-box {
+    padding-top: 5px;
+}
+
+.secpay {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    border: none;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    font: normal 76px/1 Arial Black, Gadget, sans-serif;
+    color: #545454;
+    text-align: center;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-shadow: 5px 2px 6px rgba(255,86,86,0.9) ;
+    -webkit-transform: rotateZ(3deg)   ;
+    transform: rotateZ(3deg)   ;
+}
+

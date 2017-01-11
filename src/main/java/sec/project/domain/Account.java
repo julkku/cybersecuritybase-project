@@ -4,6 +4,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @Entity
 public class Account extends AbstractPersistable<Long> {
 
+
     @Column(unique = true)
     private String username;
 
@@ -20,10 +22,10 @@ public class Account extends AbstractPersistable<Long> {
 
     private Integer funds;
 
-    @OneToMany(mappedBy = "to")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "to")
     private List<Payment> receivedPayments;
 
-    @OneToMany(mappedBy = "from")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "from")
     private List<Payment> sentPayments;
 
 
@@ -49,6 +51,30 @@ public class Account extends AbstractPersistable<Long> {
 
     public void setFunds(Integer funds) {
         this.funds = funds;
+    }
+
+    public List<Payment> getReceivedPayments() {
+        return receivedPayments;
+    }
+
+    public void setReceivedPayments(List<Payment> receivedPayments) {
+        this.receivedPayments = receivedPayments;
+    }
+
+    public List<Payment> getSentPayments() {
+        return sentPayments;
+    }
+
+    public void setSentPayments(List<Payment> sentPayments) {
+        this.sentPayments = sentPayments;
+    }
+
+    public void addReceived(Payment p) {
+        this.receivedPayments.add(p);
+    }
+
+    public void addSent(Payment payment) {
+        this.sentPayments.add(payment);
     }
 }
 

@@ -29,7 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         account = new Account();
         account.setUsername("soini");
         account.setPassword("soini");
-        account.setFunds(500);
+        account.setFunds(1000);
         accountRepository.save(account);    }
 
     @Override
