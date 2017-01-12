@@ -14,13 +14,14 @@ The appliction has the following test accounts: jules/jules, punkku-seppo/ps, so
 
 ### Cross Site Scripting (XSS)
 
-1. Log in as any user
-2. Make a payment to another user
-3. Set a script as the 'message'
-4. Log in as another user (in incognito, for instance)
+1. Log in as jules
+2. Make a payment to soini
+3. Set a script below as the 'message'
+4. Log in as soini 
 5. Open received payment
+6. Every time the payment is opened, money is transfered to jules. 
 
-Example script: ```<script>alert("This is not ok");</script>```
+Example script: ```<img src="http://localhost:8080/payments?euro=1&to=jules&message=moi+%3AD+" width="1" height="1" border="0">```
 
 #### How to fix:
  
@@ -52,17 +53,42 @@ Add an authenitification check in the controller for payments/{id}, making sure 
 
 Most important fix is to enable spring http headers in the security config, this also fixes a plethora of other security issues. 
 
+### CSRF 
 
+1. create a file called csrf.html, with code from below
+2. While logged in as soini, open the created file in browser.
+3. Money is transfered every time the page is opened
 
-## Personal notes below
+csrf.html: 
 
-everything :D
-insecure passwords!
+```
+<html>
+<body>
+	<img src="http://localhost:8080/payments?euro=1&to=jules&message=moi+%3AD+" width="1" height="1" border="0">
+</body>
+</html>
+```
 
-Url handling -> anyone can view any payment by guessable id
+##### How to fix: 
 
-Copying session cookie to a new browser -> pwnd
+1. Disable making payments with GET-requests (POST-method exists, and works)
+2. Enable CSRF-security from Spring config. (I disabled it)
 
-Payment message can contain scripts... 
+### Unvalidated Redirects and Forwards
 
-making a payment with not enough funds gives money anyway, the joy! (add transactional, change order to make sense)
+This is a combination of XSS and unvalidated redirecting!
+
+1. Log-in as jules 
+2. Send anyone message `<script> window.location = "http://www.google.com";</script>`
+3. Log-in as user payment was sent to 
+4. Open payment
+5. User is forwarded to google (link could be anything)
+
+#### How to fix:
+
+There should be no redirects, fixing payment messages to 'escaped' (utext-> text), as above, and fixing http headers (as above)
+
+### Security Misconfiguration
+
+This one is related to almost everything above, but to fix this, to start off, enable all the disabled http headers and csrf-protection. 
+

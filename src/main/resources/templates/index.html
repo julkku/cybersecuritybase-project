@@ -41,7 +41,7 @@
                 <p class="lead">Hey <span th:text="${account.username}">username</span>, your account has <b><span
                         th:text="${account.funds}"></span>,00€</b>!</p>
 
-                <form class="form-inline" method="POST" th:action="@{/payments}">
+                <form class="form-inline" method="GET" th:action="@{/payments}">
                     <div class="form-group">
                         <div class="input-group">
                             <input type="number" name="euro" class="form-control" id="exampleInputAmount"

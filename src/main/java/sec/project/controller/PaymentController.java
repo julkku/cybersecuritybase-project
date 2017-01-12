@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import sec.project.domain.Payment;
 import sec.project.domain.PaymentTemplate;
 import sec.project.repository.AccountRepository;
@@ -43,6 +44,15 @@ public class PaymentController {
         String name = auth.getName(); //get logged in username
         paymentService.newPayment(name, payment.getTo(), payment.getEuro(), payment.getMessage());
         return "redirect:/index";
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    private String insecurePayment(@RequestParam(value = "euro") Integer euro, @RequestParam(value = "to") String to, @RequestParam(value = "message") String message) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName(); //get logged in username
+        paymentService.newPayment(name, to, euro, message);
+        return "redirect:/index";
+
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
