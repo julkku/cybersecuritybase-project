@@ -8,6 +8,18 @@ Security problems from  [Owasp Top 10 Web Security List](https://www.owasp.org/i
 
 The application is inherently flawed, and for instance allows users to send payments with scripts that send money back to the sender! 
 
+## How to run 
+
+### Option 1 
+
+1. Clone repository to your computer (git clone https://github.com/julkku/cybersecuritybase-project)
+2. Open and run the application in your favourite IDE (e.g. Netbeans or IDEA)
+
+### Option 2 
+
+1. Download `cybersecuritybase-project-1.0-SNAPSHOT.jar` file in the repository
+2. Run it with `java -Dserver.port=8080 -jar target/cybersecuritybase-project-1.0-SNAPSHOT.jar` (make sure the file-name is correct)
+
 ## Test accounts 
 
 The appliction has the following test accounts: jules/jules, punkku-seppo/ps, soini/soini.
@@ -22,7 +34,8 @@ The following problems from Owasp top 10 have been coded into the application an
 
 1. Log in as jules
 2. Make a payment to soini
-3. Set a script below as the 'message'
+3. Enter the script below in the message field. 
+4. Submit the payment
 4. Log in as soini 
 5. Open received payment
 6. Every time the payment is opened, money is transfered to jules. 
