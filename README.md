@@ -6,11 +6,17 @@ This project was designed to be as insecure as possible, so be warned if trying 
 
 Security problems from  [Owasp Top 10 Web Security List](https://www.owasp.org/index.php/Top_10_2013-Top_10). 
 
+The application is inherently flawed, and for instance allows users to send payments with scripts that send money back to the sender! 
+
 ## Test accounts 
 
 The appliction has the following test accounts: jules/jules, punkku-seppo/ps, soini/soini.
 
+Registration is not supported. 
+
 ## Known security problems
+
+The following problems from Owasp top 10 have been coded into the application and identified below: 
 
 ### Cross Site Scripting (XSS)
 
