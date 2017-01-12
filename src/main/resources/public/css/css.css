@@ -16,6 +16,13 @@ body {
     width: 50%;
 }
 
+.logout {
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+
 .secpay {
     -webkit-box-sizing: content-box;
     -moz-box-sizing: content-box;
