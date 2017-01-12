@@ -1,10 +1,12 @@
-# Websecurity course project
+# SecurePay -> cyber security project
 
 ## Intro
 
 This project was designed to be as insecure as possible, so be warned if trying to run! 
 
 Security problems from  [Owasp Top 10 Web Security List](https://www.owasp.org/index.php/Top_10_2013-Top_10). 
+
+The application is a crude online banking application, where users may send each other money with messages. 
 
 The application is inherently flawed, and for instance allows users to send payments with scripts that send money back to the sender! 
 
