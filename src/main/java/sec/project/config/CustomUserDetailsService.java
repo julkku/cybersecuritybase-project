@@ -23,14 +23,20 @@ public class CustomUserDetailsService implements UserDetailsService {
         Account account = new Account();
         account.setUsername("jules");
         account.setPassword("jules");
-        account.setFunds(500);
+        account.setFunds(5);
         accountRepository.save(account);
 
         account = new Account();
         account.setUsername("soini");
         account.setPassword("soini");
-        account.setFunds(1000);
-        accountRepository.save(account);    }
+        account.setFunds(10);
+        accountRepository.save(account);
+
+        account = new Account();
+        account.setUsername("punkku-seppo");
+        account.setPassword("ps");
+        account.setFunds(10);
+        accountRepository.save(account);}
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

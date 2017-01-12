@@ -5,6 +5,16 @@ body {
 .content-box {
     padding-top: 5px;
 }
+.recent-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;}
+
+.recent {
+    text-align: left;
+    width: 50%;
+}
 
 .secpay {
     -webkit-box-sizing: content-box;
@@ -21,5 +31,10 @@ body {
     text-shadow: 5px 2px 6px rgba(255,86,86,0.9) ;
     -webkit-transform: rotateZ(3deg)   ;
     transform: rotateZ(3deg)   ;
+}
+
+.payment-info {
+    width: 100%;
+    background-color: red;
 }
 

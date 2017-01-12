@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Min;
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ public class Account extends AbstractPersistable<Long> {
 
     private String password;
 
+    @Min(0)
     private Integer funds;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "to")

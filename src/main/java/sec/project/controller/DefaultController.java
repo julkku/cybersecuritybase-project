@@ -14,6 +14,8 @@ import sec.project.repository.PaymentRepository;
 import sec.project.service.PaymentService;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class DefaultController {
@@ -36,7 +38,7 @@ public class DefaultController {
     @PostConstruct
     public void init(){
 
-        paymentService.newPayment("soini", "jules", 500, "test payment");
+        paymentService.newPayment("soini", "jules", 5, "test payment");
     }
 
     @RequestMapping(value = "index", method = RequestMethod.GET)
@@ -45,19 +47,25 @@ public class DefaultController {
         String name = auth.getName(); //get logged in username
         Account account = accountRepository.findByUsername(name);
 
+//        This is bad
         int unseen = 0;
         for (Payment p : account.getReceivedPayments()) {
             if (!p.getSeen()) unseen++;
         }
-        String funds = account.getFunds() + "";
-        String parsed = funds.substring(0, funds.length() - 2) + "," + funds.substring(funds.length() - 2);
+
+//        So is this :D
+        List<Account> accounts = accountRepository.findAll();
+        List<Account> others = new ArrayList<>();
+        for(Account a : accounts){
+            if(!a.getUsername().equals(name)) others.add(a);
+        }
 
 
-        model.addAttribute("username", account.getUsername());
-        model.addAttribute("funds", parsed);
+        model.addAttribute("account", account);
+        model.addAttribute("funds", account.getFunds());
         if(unseen>0) model.addAttribute("unseen", unseen);
-        model.addAttribute("users", accountRepository.findAll());
-        model.addAttribute("payments", paymentRepository.findAll());
+        model.addAttribute("users", others);
+//        model.addAttribute("payments", paymentRepository.FindByTo(account));
 
         return "index";
     }

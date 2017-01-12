@@ -24,6 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // no real security at the moment
 
+        http.headers().disable();
 
         http.authorizeRequests()
                 .antMatchers("/login", "/signup", "/public*").permitAll()

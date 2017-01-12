@@ -35,17 +35,15 @@
             <div class="col-lg-12 text-center">
                 <h1 class="secpay">SecurePay</h1>
                 <br/>
-                <button class="btn btn-primary" type="button">
-                    Transactions <span class="badge" th:text="${unseen}">4</span>
-                </button>
+
                 <br/>
-                <p class="lead">Hey <span th:text="${username}">username</span>, your account has <b><span
-                        th:text="${funds}"></span>€</b>!</p>
+                <p class="lead">Hey <span th:text="${account.username}">username</span>, your account has <b><span
+                        th:text="${account.funds}"></span>,00€</b>!</p>
 
                 <form class="form-inline" method="POST" th:action="@{/payments}">
                     <div class="form-group">
                         <div class="input-group">
-                            <input type="text" name="euro" class="form-control" id="exampleInputAmount"
+                            <input type="number" name="euro" class="form-control" id="exampleInputAmount"
                                    placeholder="Amount"/>
                             <div class="input-group-addon">.00€</div>
                         </div>
@@ -65,21 +63,24 @@
                     <button type="submit" class="btn btn-primary">Transfer cash</button>
                 </form>
 
-                <div class="container">
-                    <h2>Recently received</h2>
-                    <table class="table table-condensed">
+                <div class="container recent-container">
+                    <h2>
+                        Recently received <span class="badge" th:text="${unseen}">4</span>
+                    </h2>
+                    <table class="table recent">
                         <thead>
                         <tr>
                             <th>From</th>
-                            <th>Amount</th>
-                            <th>Message (prone to malicious exploits :D)</th>
+                            <th>Date</th>
                         </tr>
                         </thead>
-                        <tbody >
-                        <tr th:each="payment : ${payments}">
-                            <td th:text="${payment.from.username}">John</td>
-                            <td th:text="${payment.amount}">Doe</td>
-                            <td th:utext="${payment.message}">john@example.com</td>
+                        <tbody>
+                        <tr th:each="payment : ${account.receivedPayments}">
+                            <td th:text="${payment.from.username}">Timo Soini</td>
+                            <td><a th:href="@{'/payments/{id}'(id=${payment.id})}">
+                                <span th:utext="${payment.date}">5</span>
+                                <span th:if="${!payment.seen}" class="label label-danger">new!</span>
+                            </a></td>
                         </tr>
                         </tbody>
                     </table>

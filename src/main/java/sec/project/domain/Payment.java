@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import javax.validation.constraints.Min;
 import java.util.Date;
 
 @Entity
@@ -22,7 +23,8 @@ public class Payment extends AbstractPersistable<Long> {
     @ManyToOne
     private Account to;
 
-    private Integer amount;
+    @Min(1)
+    private Integer euro;
 
     private String message;
 
@@ -50,12 +52,12 @@ public class Payment extends AbstractPersistable<Long> {
         this.to = to;
     }
 
-    public Integer getAmount() {
-        return amount;
+    public Integer getEuro() {
+        return euro;
     }
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
+    public void setEuro(Integer euro) {
+        this.euro = euro;
     }
 
     public String getMessage() {
@@ -72,5 +74,13 @@ public class Payment extends AbstractPersistable<Long> {
 
     public void setSeen(Boolean seen) {
         this.seen = seen;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

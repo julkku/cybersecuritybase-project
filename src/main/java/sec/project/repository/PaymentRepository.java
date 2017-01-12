@@ -5,5 +5,4 @@ import sec.project.domain.Payment;
 
 
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
-
 }

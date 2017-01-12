@@ -1,5 +1,7 @@
 package sec.project.domain;
 
+import javax.validation.constraints.Min;
+
 /**
  * Created by julkku on 1/11/17.
  */
@@ -9,6 +11,7 @@ public class PaymentTemplate {
 
     private String from;
 
+    @Min(1)
     private Integer euro;
 
     private String message;
