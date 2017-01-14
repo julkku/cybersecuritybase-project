@@ -111,5 +111,5 @@ There should be no redirects, fixing payment messages to 'escaped' (utext-> text
 
 ### Security Misconfiguration
 
-This one is related to almost everything above, but to fix this, to start off, enable all the disabled http headers and csrf-protection. 
+This one is related to almost everything above, but to fix this, to start off, enable all the disabled http headers and csrf-protection. Also included in this is unencrypted passwords, to fix this I would switch from plaintext to springs password encoder
 
